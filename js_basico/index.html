@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ejercicios de JS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Ejercicios de JS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-5 p-5 mb-4 bg-light rounded-3">
+        <!-- Botones para agregar productos al carrito -->
+        <h4 class="text-center text-success">
+          Agregue elementos a su carrito
+        </h4>
+        <div class="btn-group" role="group" aria-label="Productos">
+          <button type="button" class="btn btn-primary" onclick="agregar_prod(pepsi)">Agregar Pepsi</button>
+          <button type="button" class="btn btn-primary" onclick="agregar_prod(margarina)">Agregar Margarina</button>
+          <button type="button" class="btn btn-primary" onclick="agregar_prod(leche)">Agregar Leche</button>
+        </div>
+      </div>
+      <div class="col-3">
+        <!-- Botón para calcular total -->
+        <button type="button" class="btn btn-success" onclick="calcular_total()">Calcular Total</button>
+        <h3 id="total"></h3>
+      </div>
+      <div class="col-4">
+        <!-- Descripción del carrito -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Mi Carrito</h5>
+            <ul id="lista">
+
+            </ul>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script>
+    const pepsi = {
+      nombre: 'Pepsi sin Azúcar',
+      precio: 1750,
+      id: 5
+    }
+    const margarina = {
+      nombre: 'Margarina Belmont',
+      precio: 2000,
+      id: 67
+    }
+    const leche = {
+      nombre: 'Colún Semidescremada',
+      precio: 1050,
+      id: 102
+    }
+
+    function calcular_total() {
+      const suma = CARRO.suma()
+
+      const total = document.querySelector('#total')
+
+      total.innerHTML = `Lleva un total de $${suma} pesos`
+    }
+    
+    function agregar_prod(nuevo_producto) {
+      // 1. Cambio el carrito
+      CARRO.agregar_prod(nuevo_producto)
+      // 2. Cambio el DOM
+      const lista = document.querySelector('#lista')
+      lista.innerHTML += `<li>${nuevo_producto.nombre} ($${nuevo_producto.precio}) </li>`
+    }
+    // CARRO DE COMPRAS
+    // agregar producto, eliminar producto, ver total de costo
+    const CARRO = {
+      productos: [],
+      agregar_prod: function (nuevo_producto) {
+        this.productos.push(nuevo_producto)
+      },
+      eliminar_producto: function (cod_producto) {
+
+        // 1. Creamos un arreglo de los productos filtrados
+        const filtrados = []
+        // 2. Iteramos los productos actuales
+        for (let i=0; i<this.productos.length; i++) {
+          const producto = this.productos[i]
+          if (producto.id != cod_producto) {
+            filtrados.push(producto)
+          }
+        }
+        // 3. Reemplazamos los productos actuales por los productos filtrados
+        this.productos = filtrados
+
+        //this.productos = this.productos.filter(x => x.id != cod_producto)
+      },
+      suma: function () {
+        let total = 0
+        for (let producto of this.productos) {
+          total = total + producto.precio
+        }
+        return total
+      },
+      fecha: {
+        dia: '2023-02-06',
+        hora: '20:03',
+        gmt: -4
+      }
+    }
+
+    const brutos = [
+      ['Alex', 1400000],
+      ['Sofia', 2000000],
+      ['Joaco', 1000000],
+      ['Abril', 3200000]
+    ]
+
+    function calcular_liquidos(sueldos) {
+      // 1. Defino una matriz de respuesta
+      const liquidos = []
+
+      // 2. Hago los cálculos
+      for (let i=0; i < sueldos.length; i++) {
+        const nombre = sueldos[i][0]
+        const sueldo_bruto = sueldos[i][1]
+        // 2.5 Calcular sueldo líquido
+        const sueldo_liquido = sueldo_bruto * 0.83
+        const nueva_fila = [nombre, sueldo_liquido]
+        liquidos.push(nueva_fila)
+      }
+
+      // 3. Retorno la matriz ya calculada
+      return liquidos
+    }
+
+
+
+    // 4 => "cuatro", 35 => "treinta y cinco", 
+    function num2str(num) {
+      return 'Pendiente'
+    }
+  </script>
+</body>
+</html>
