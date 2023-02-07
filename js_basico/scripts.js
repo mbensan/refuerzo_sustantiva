@@ -91,12 +91,26 @@ function calcular_liquidos(sueldos) {
   return liquidos
 }
 
+/*
+return [
+  ['A1', 'A2', ..., 'A8'],
+  ['B1', 'B2', ..., 'B8'],
+  ...
+  ['H1', 'H2', ..., 'H8'],
+]
+*/
 function tablero(num) {
-  // algo
-  return [
-    ['A1', 'A2', ..., 'A8'],
-    ['B1', 'B2', ..., 'B8'],
-    ...
-    ['F1', 'F2', ..., 'F8'],
-  ]
+  const matrix = []
+  const letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+  for (let i=0; i<letras.length; i++) {
+    // 1. obtengo la letra
+    const letra = letras[i]
+    // 2. Agrego la fila correspondiente a esa letra
+    const fila = []
+    for (let j=1; j<=8; j++) {
+      fila.push(letra+j)
+    }
+    matrix.push(fila)
+  }
+  return matrix
 }

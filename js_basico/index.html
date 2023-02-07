@@ -61,18 +61,29 @@
         <!-- Botón para calcular total -->
         <button type="button" class="btn btn-success" onclick="calcular_total()">Calcular Total</button>
         <h3 id="total"></h3>
-      </div>
-      <div class="col-4">
         <!-- Descripción del carrito -->
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Mi Carrito</h5>
             <ul id="lista">
-
+  
             </ul>
             <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
+      </div>
+      <div class="col-4">
+        <form id="form_num2str">
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Numero</label>
+            <input type="number" min="0" max="999999" required class="form-control" id="num">
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1" id="str">Sin número aún</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Calcular</button>
+        </form>
       </div>
     </div>
   </div>
