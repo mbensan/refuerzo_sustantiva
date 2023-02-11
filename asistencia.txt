@@ -17,6 +17,7 @@ Giselle
 Jose Alvarado
 Constanza
 
+<<<<<<< HEAD
 9 Feb:
 Enrique Ansa
 Franco Jorquera
@@ -25,3 +26,9 @@ Javier Vargas
 Jose Miguel Ruizs
 Victor Contreras
 
+=======
+10 Feb:
+Enrique
+Javier
+Giselle
+>>>>>>> 25c172b36e4b383d4a5bfd00a57fb80bc5c65d25
