@@ -5,8 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .img {
+      display: block;
+      width: 200px;
+    }
+  </style>
 </head>
 <body>
+  <h3>Aplicacion de Rick n Morty</h3>
+  <table border="2">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Imagen</th>
+      </tr>
+    </thead>
+    <tbody id="personajes">
+
+    </tbody>
+  </table>
+  <button onclick="cargar()">CARGAR</button>
   <script src="scripts.js"></script>
 </body>
 </html>
