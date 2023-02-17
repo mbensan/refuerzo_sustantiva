@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplos de POO</title>
+</head>
+<body>
+  <div class="container">
+    <form id="form">
+      <p>
+        <label for="origen">Origen</label>
+        <select required name="origen" id="origen">
+          <option value="1370">Antofagasta</option>
+          <option value="1560">Calama</option>
+          <option value="0">Santiago</option>
+          <option value="-675">Temuco</option>
+          <option value="-1050">Pto Montt</option>
+        </select>
+      </p>
+      <p>
+        <label for="destino">Destino</label>
+        <select required name="destino" id="destino">
+          <option value="1370">Antofagasta</option>
+          <option value="1560">Calama</option>
+          <option value="0">Santiago</option>
+          <option value="-675">Temuco</option>
+          <option value="-1050">Pto Montt</option>
+        </select>
+      </p>
+      <p>
+        <label for="origen">Vehículo</label>
+        <select required name="vehiculo" id="vehiculo">
+          <option value="v16">Nissan V16</option>
+          <option value="prisma">Prisma</option>
+          <option value="ranger">Ford Ranger</option>
+        </select>
+      </p>
+      <p>
+        <button type="submit">Calcular</button>
+      </p>
+    </form>
+    <div>
+      <h3 id="resultado"></h3>
+    </div>
+  </div>
+  <script src="scripts.js"></script>
+</body>
+</html>
