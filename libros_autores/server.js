@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-
+// Configuramos el motor de templates
 nunjucks.configure('templates',{
   express:app,
   autoscape:true,
@@ -23,10 +23,10 @@ app.get('/hola', function(req, res) {
 })
 
 app.get('/chao', function(req, res) {
-  res.send('hola a ti')
+  res.send('chao a ti')
 })
 
-
+// Se inicia la aplicación
 app.listen(3000, function(){
   console.log("Servidor escuchando en el puerto 3000")
 })

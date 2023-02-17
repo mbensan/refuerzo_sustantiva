@@ -2,4 +2,100 @@
 
 {% block main %}
   <h1 class="text-center">Autores</h1>
+
+  <div class="row mt-3">
+    <div class="offset-2 col-4">
+      <h3 class="text-center">Añadir un Autor</h3>
+      <form class="card" method="post" id="form-authors" action="/authors">
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Notas</label>
+            <textarea name="notes" id="notes" cols="30" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-4">
+      <table class="table table-dark table-stripped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="authors-table">
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // llenado inicial con los autores
+  async function init () {
+    let authors = await fetch('/data/authors')
+    authors = await authors.json()
+
+    console.log(authors)
+    for (let author of authors) {
+      drawAuthor(author)
+    }
+  }
+  init()
+
+  function drawAuthor(author) {
+    const table = document.querySelector('#authors-table')
+
+    table.innerHTML += `
+      <tr>
+        <th scope="row">${author.id}</th>
+        <td>${author.name} ${author.lastname}</td>
+        <td>
+          <a href="#">Ver</a>
+        </td>
+      </tr>
+    `
+  }
+
+  const form = document.querySelector('#form-authors')
+  // CREACIÓN DE NUEVOS AUTORES
+  form.addEventListener('submit', async function (ev) {
+    // prevenir que se envíe el formulario
+    ev.preventDefault()
+
+    // recuperamos los datos de los campos del formulario
+    const name = document.querySelector('#name').value
+    const lastname = document.querySelector('#lastname').value
+    const notes = document.querySelector('#notes').value
+
+    // envio solicitud AJAX usando fetch
+    let new_author = await fetch('/authors', {
+      method: 'post',
+      body: JSON.stringify({
+        name, lastname, notes
+      })
+    })
+
+    new_author = await new_author.json()
+    // agrego el nuevo autor a la tabla
+    drawAuthor(new_author)
+
+    // reseteo el formulario
+    document.querySelector('#name').value = ''
+    document.querySelector('#lastname').value = ''
+    document.querySelector('#notes').value = ''
+  })
+</script>
 {% endblock %}
